@@ -16,12 +16,6 @@
 - [1. The Actual Architecture](#1-the-actual-architecture-what-everyone-should-build-toward)
 - [2. Unified Tech Stack](#2-unified-tech-stack)
 - [3. What to Hand to Each Tool](#3-what-to-hand-to-each-tool)
-- [4. Frontend Framework Decision](#4-frontend-framework-decision)
-- [5. Claude Code Prompt — Backend + Hybrid ML](#5-claude-code-prompt--backend--hybrid-ml-paste-as-is)
-- [6. Cursor / v0 Prompt — Frontend](#6-cursor--v0-prompt--frontend)
-- [7. Minimal Working Code to Unblock Claude Code Immediately](#7-minimal-working-code-to-unblock-claude-code-immediately)
-- [8. For Your Presentation Slide on "Design Methodology"](#8-for-your-presentation-slide-on-design-methodology)
-- [9. Two-Week Task Order](#9-two-week-task-order-give-this-to-chatgpt-to-refine-per-your-teams-actual-pace)
 
 ---
 
