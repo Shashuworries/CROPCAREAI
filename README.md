@@ -59,9 +59,7 @@ crop-disease-detection/
 └── README.md            This file
 ```
 
-(Back to top)
 
----
 
 ## 🎓 Team & Academic Details
 
@@ -86,9 +84,6 @@ crop-disease-detection/
 | VAANYA Singh | 25BAI11524 |
 | PRIYANSHU JAIN | 25BAI11181 |
 | NAMAN SHARMA | 25BAI11560 |
-(Back to top)
-
----
 
 ## 🚨 Problem Statement
 
@@ -97,10 +92,6 @@ Modern agriculture is confronted with numerous challenges, including crop diseas
 Furthermore, the lack of high-quality labelled datasets poses a significant barrier to developing robust machine learning models for precision agriculture. Without sufficient data, deep learning models struggle to achieve high accuracy in crop classification, disease identification, and yield estimation.
 
 This project introduces an AI-driven Crop Recognition System that integrates deep learning-based feature extraction, AI-assisted crop analysis, and similarity-based image matching to enhance crop identification accuracy, improve decision-making for farmers, and optimize agricultural productivity.
-
-(Back to top)
-
----
 
 ## 🎯 Objectives
 
@@ -111,9 +102,6 @@ The primary objective of this project is to develop and implement an AI-driven C
 - Overcome data scarcity issues by leveraging AI to improve image-based crop classification and decision-making.
 - Classify different vegetable crops accurately to support automated crop identification, monitoring, and disease management for smart farming applications.
 
-(Back to top)
-
----
 
 ## 🗂 Repository Structure
 
@@ -164,10 +152,6 @@ crop-disease-detection/
 ├── .gitignore
 └── README.md
 ```
-
-(Back to top)
-
----
 
 ## 🏗 System Architecture — The Hybrid Pipeline
 
@@ -224,9 +208,6 @@ Both thresholds live in `backend/app/core/config.py` — tune them once you have
 
 **Why this design is defensible in a viva:** the primary path is a trained classifier; when it's not confident, the system falls back to a similarity-search safety net instead of guessing. That's a legitimate design decision, not a hack — and it directly reuses the ResNet50 + cosine similarity code already validated in the Phase II report.
 
-(Back to top)
-
----
 
 ## 🔄 From Phase II to Phase III — Design Evolution
 
@@ -236,9 +217,6 @@ The Phase II report (Chapter 4, Design Methodology) was built around GAN-based s
 
 Gemini AI is deliberately **not** in the live inference path for the MVP — it remains a stretch goal (e.g. generating a natural-language explanation of the result), since depending on a paid/rate-limited external API for the core demo path is a real risk during a viva.
 
-(Back to top)
-
----
 
 ## 🛠 Tech Stack
 
@@ -297,9 +275,6 @@ curl http://127.0.0.1:8000/health
 
 Interactive API docs (Swagger UI) are auto-generated at `http://127.0.0.1:8000/docs`.
 
-(Back to top)
-
----
 
 ### 2. Frontend Setup
 
@@ -320,9 +295,7 @@ const API_BASE_URL = "http://127.0.0.1:8000";
 
 Change this if your backend runs somewhere else.
 
-(Back to top)
 
----
 
 ### 3. Training the Classifier (once your dataset is ready)
 
