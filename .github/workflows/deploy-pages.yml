@@ -30,10 +30,9 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Your repo has frontend/ as a TOP-LEVEL folder (sibling of
-          # crop-disease-detection/), confirmed from github.com/Shashuworries/CROPCAREAI.
-          # If you ever move frontend/ elsewhere, update this path to match.
-          path: './frontend/public'
+          # Confirmed from the live repo: index.html, script.js, and style.css
+          # sit directly inside frontend/ — there is NO public/ subfolder.
+          path: './frontend'
 
       - name: Deploy to GitHub Pages
         id: deployment
