@@ -278,10 +278,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Back Buttons
+    // NOTE: 'btn-lowconf-back' was removed here — that element does not exist
+    // anywhere in index.html (screen-low-confidence only has 'btn-try-another-photo').
+    // Calling .addEventListener on a null element throws and halts the entire
+    // script, which is why nothing on the page worked before this fix.
     document.getElementById('btn-scan-back').addEventListener('click', () => navigateTo('screen-home'));
     document.getElementById('btn-preview-back').addEventListener('click', () => navigateTo('screen-scan'));
     document.getElementById('btn-result-home').addEventListener('click', () => navigateTo('screen-home'));
-    document.getElementById('btn-lowconf-back').addEventListener('click', () => navigateTo('screen-scan'));
 
     // Home Quick Actions
     document.getElementById('btn-hero-analyze').addEventListener('click', () => navigateTo('screen-scan'));
