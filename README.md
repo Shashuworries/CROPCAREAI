@@ -73,19 +73,19 @@ crop-disease-detection/
 | Institution | VIT Bhopal University, Kothrikalan, Sehore, Madhya Pradesh – 466114 |
 | School | School of Computing Science and Engineering |
 | Report Date | April 2025 |
-| Project Guide | Dr. Siddharth Singh Chouhan, Assistant Professor (Gr-2) |
-| Program Chair | Dr. Rajit Nair, Senior Assistant Professor (Gr-1) |
+| Project Guide | Dr.  |
+| Program Chair | Dr.  |
 
 **Team Members**
 
 | Name | Registration No. |
 |---|---|
-| Mridul Karar | 21BAI10051 |
-| Suryansh Patial | 21BAI10069 |
-| Vansh Garg | 21BAI10158 |
-| Shubham Singh | 21BAI10247 |
-| Sumaya Prakash | 21BAI10256 |
-
+| SHASHANK | 25BAI10569 |
+| KANAK GUPTA | 25BAI11452 |
+| KAANYA AGARWAL | 25BAI10237 |
+| VAANYA Singh | 25BAI11524 |
+| PRIYANSHU JAIN | 25BAI11181 |
+| NAMAN SHARMA | 25BAI11560 |
 (Back to top)
 
 ---
