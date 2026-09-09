@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+*.egg-info/
+
+# Model artifacts (large — don't commit binary weights to git)
+backend/app/ml/weights/*.keras
+backend/app/ml/weights/*.npz
+backend/app/ml/weights/class_indices.json
+
+# Dataset (large — never commit raw image data)
+ml_pipeline/dataset/
+dataset/
+
+# Env / secrets
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
