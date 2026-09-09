@@ -73,8 +73,8 @@ crop-disease-detection/
 | Institution | VIT Bhopal University, Kothrikalan, Sehore, Madhya Pradesh – 466114 |
 | School | School of Computing Science and Engineering |
 | Report Date | April 2025 |
-| Project Guide | Dr.  |
-| Program Chair | Dr.  |
+| Project Guide | Dr. ANIL KUMAR YADAV  |
+| Program Chair | Dr. JITENDRA PRATAP SINGH |
 
 **Team Members**
 
@@ -255,9 +255,6 @@ Gemini AI is deliberately **not** in the live inference path for the MVP — it 
 | Dev tooling | Jupyter Notebook / VS Code, Google Colab | Free GPU/TPU access for training experiments |
 | Version control | GitHub | Track changes, collaborate, manage the repo |
 
-(Back to top)
-
----
 
 ## 🚀 Getting Started
 
@@ -354,9 +351,6 @@ curl http://127.0.0.1:8000/health
 # classifier_loaded and/or similarity_model_loaded should now be true
 ```
 
-(Back to top)
-
----
 
 ### 4. Adding More Diseases
 
@@ -365,9 +359,7 @@ curl http://127.0.0.1:8000/health
 3. Re-run the cleaning, training, and embedding-building steps above.
 4. Run `python ml_pipeline/export_class_indices.py --dataset dataset/clean` to double check every class in your dataset has a matching `diseases.json` entry before you retrain.
 
-(Back to top)
 
----
 
 ## 📡 API Response Contract
 
@@ -399,9 +391,6 @@ If `method_used == "low_confidence"`, `symptoms` / `prevention` / `treatment` ar
 }
 ```
 
-(Back to top)
-
----
 
 ## 🧭 Known Gaps & Roadmap
 
@@ -414,9 +403,6 @@ If `method_used == "low_confidence"`, `symptoms` / `prevention` / `treatment` ar
 - [ ] Multimodal data fusion — satellite imagery, soil quality, climate forecasts.
 - [ ] Multi-language and voice-assisted interface for rural accessibility.
 
-(Back to top)
-
----
 
 ## ⚠️ Limitations (from Phase II Report)
 
@@ -427,9 +413,7 @@ If `method_used == "low_confidence"`, `symptoms` / `prevention` / `treatment` ar
 - **Dependency on image quality** — poor resolution, improper lighting, or blurred images can lead to misclassification.
 - **Internet dependency** — a web-based interface means users in remote agricultural regions with limited connectivity may face accessibility issues.
 
-(Back to top)
 
----
 
 ## 📚 References
 
@@ -441,20 +425,13 @@ If `method_used == "low_confidence"`, `symptoms` / `prevention` / `treatment` ar
 6. Mohanty, S. P., et al. (2016). "Using Deep Learning for Image-Based Plant Disease Detection." *Frontiers in Plant Science*, 7, 1419.
 7. Weiss, M., et al. (2020). "Remote Sensing for Agricultural Applications: A Meta-Review." *Remote Sensing of Environment*, 237, 111593.
 
-(Back to top)
-
----
 
 ## 🙏 Acknowledgements
 
-We would like to thank our internal guide **Dr. Siddharth Singh Chouhan** for continually guiding and actively participating in this project, and providing valuable suggestions throughout. We also thank **Dr. G. Prabu Kanna** (PC-Lead) and **Dr. Pon Harshavardhanan** (Dean), School of Computing Science Engineering and Artificial Intelligence, for their valuable support and encouragement, along with all the technical and teaching staff who extended support directly or indirectly.
+We would like to thank our internal guide **Dr. ANIL KUMAR MISHRA** for continually guiding and actively participating in this project, and providing valuable suggestions throughout. We also thank **Dr. JITHENDRA PRATAP SINGH** (PC-Lead) and **Dr. ** (Dean), School of Computing Science Engineering and Artificial Intelligence, for their valuable support and encouragement, along with all the technical and teaching staff who extended support directly or indirectly.
 
-(Back to top)
-
----
 
 ## 📄 License
 
 Developed as part of the **VIT Bhopal Capstone Project (DSN4096)** for academic purposes.
 
-(Back to top)
