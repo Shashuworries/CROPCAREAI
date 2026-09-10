@@ -32,7 +32,7 @@ jobs:
         with:
           # Confirmed from the live repo: index.html, script.js, and style.css
           # sit directly inside frontend/ — there is NO public/ subfolder.
-          path: './frontend'
+          path: './CROPCAREAI-updated/frontend'
 
       - name: Deploy to GitHub Pages
         id: deployment
