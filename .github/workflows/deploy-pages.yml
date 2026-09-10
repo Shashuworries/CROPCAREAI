@@ -19,7 +19,9 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -30,9 +32,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Confirmed from the live repo: index.html, script.js, and style.css
-          # sit directly inside frontend/ — there is NO public/ subfolder.
-          path: './CROPCAREAI-updated/frontend'
+          path: './CROPCAREAI-updated/frontend/public'
 
       - name: Deploy to GitHub Pages
         id: deployment
