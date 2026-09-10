@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CropCare AI - Smartphone Crop Disease Detection & Farmer Support System</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Outer Smartphone Device Frame (Emulates native app at 390px x 844px) -->
+    <div class="device-container">
+
+        <!-- Elegant Header Bar -->
+        <header class="app-header">
+            <div class="header-brand" id="brand-logo" title="Double tap for developer menu">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.4 19 2c1 2 2 4.12 2 9a7 7 0 0 1-10 9z"></path>
+                        <path d="M11 20v-5.5a2.5 2.5 0 0 1 2.5-2.5H18"></path>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-title">CropCare AI</span>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <button class="lang-toggle-btn" id="header-lang-btn" aria-label="Switch Language">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    </svg>
+                    <span id="lang-indicator">EN</span>
+                </button>
+
+                <button class="icon-btn" id="btn-notifications" aria-label="Notifications">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                    <span class="notification-badge"></span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Live backend/model status banner (hidden unless something's actually wrong/standby) -->
+        <div class="alert-banner alert-error hidden" id="global-status-banner" style="margin:8px 16px 0;">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <span id="global-status-text">Checking backend connection…</span>
+        </div>
+
+        <!-- Main Content Screens Viewport -->
+        <main class="app-content">
+
+            <!-- SCREEN 1: HOME / FARMER DASHBOARD -->
+            <section class="screen active" id="screen-home">
+
+                <div class="hero-photo-banner">
+                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80"
+                        alt="Sunrise over green farm field" class="hero-bg-img">
+                    <div class="hero-overlay-gradient"></div>
+                    <div class="hero-header-content">
+                        <div class="hero-mini-badge">
+                            <span class="badge-leaf">🌿</span>
+                            <span>AI Crop Health Assistant</span>
+                        </div>
+                        <h1 class="farmer-greeting" id="txt-greeting">Namaste, Farmer 👋</h1>
+                        <p class="greeting-sub" id="txt-subgreeting">Let's keep your crops healthy.</p>
+                    </div>
+                </div>
+
+                <div class="hero-floating-card">
+                    <div class="floating-card-header">
+                        <span class="card-leaf-icon">🌿</span>
+                        <h2 class="hero-action-title" id="txt-hero-title">Analyze Your Crop</h2>
+                    </div>
+                    <p class="hero-action-desc" id="txt-hero-desc">
+                        Take a photo of a crop leaf and let CropCare AI help identify possible diseases.
+                    </p>
+                    <button class="btn btn-primary btn-large btn-block" id="btn-hero-analyze">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                            <circle cx="12" cy="13" r="4"></circle>
+                        </svg>
+                        <span id="txt-cta-analyze">Scan Crop →</span>
+                    </button>
+                </div>
+
+                <!-- Weather Risk Alert Card -->
+                <div class="section-block" id="weather-card-wrap">
+                    <h3 class="section-title">🌦️ Disease Risk Weather Alert</h3>
+                    <div class="history-card" id="weather-card" style="align-items:flex-start; cursor:default;">
+                        <div class="action-icon icon-sage" style="flex-shrink:0;">🌡️</div>
+                        <div class="history-details">
+                            <div class="history-crop-title" id="weather-headline">Getting local weather…</div>
+                            <div class="history-disease-subtitle" id="weather-detail">Enable location to see a fungal-risk estimate for your area.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-block">
+                    <h3 class="section-title" id="txt-quick-actions">Quick Actions</h3>
+                    <div class="quick-actions-grid">
+                        <button class="action-card" id="qa-scan">
+                            <div class="action-icon icon-forest">
+                                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                                    <circle cx="12" cy="13" r="4"></circle>
+                                </svg>
+                            </div>
+                            <span class="action-label" id="qa-txt-scan">Scan</span>
+                        </button>
+                        <button class="action-card" id="qa-history">
+                            <div class="action-icon icon-sage">
+                                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path>
+                                </svg>
+                            </div>
+                            <span class="action-label" id="qa-txt-history">History</span>
+                        </button>
+                        <button class="action-card" id="qa-support">
+                            <div class="action-icon icon-cream">
+                                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                            </div>
+                            <span class="action-label" id="qa-txt-support">Support</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="section-block">
+                    <div class="section-header-flex">
+                        <h3 class="section-title" id="txt-recent-checks">Recent Checks</h3>
+                        <button class="link-btn" id="btn-view-all-history">View All →</button>
+                    </div>
+                    <div class="recent-cards-list" id="recent-checks-container"></div>
+                </div>
+
+                <div class="proto-footer-note">
+                    <span id="txt-home-footer">📌 Live predictions from your CropCare AI backend</span>
+                </div>
+
+            </section>
+
+            <!-- SCREEN 2: CROP SCAN / UPLOAD -->
+            <section class="screen" id="screen-scan">
+                <div class="page-top-banner">
+                    <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=800&q=80"
+                        alt="Green leaf banner" class="banner-img">
+                    <div class="banner-overlay"></div>
+                    <button class="back-btn back-btn-overlay" id="btn-scan-back">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                    </button>
+                    <div class="banner-text">
+                        <h2 class="banner-title" id="txt-scan-title">Check Your Crop</h2>
+                        <p class="banner-sub" id="txt-scan-sub">Take a clear photo of the affected leaf.</p>
+                    </div>
+                </div>
+
+                <input type="file" id="leaf-input-file" accept="image/jpeg,image/jpg,image/png,image/webp" class="visually-hidden">
+                <input type="file" id="leaf-input-camera" accept="image/jpeg,image/jpg,image/png,image/webp" capture="environment" class="visually-hidden">
+
+                <div class="floating-upload-card">
+                    <div class="upload-dropzone" id="upload-dropzone">
+                        <div class="botanical-illustration">
+                            <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.6">
+                                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.4 19 2c1 2 2 4.12 2 9a7 7 0 0 1-10 9z"></path>
+                                <path d="M11 20v-5.5a2.5 2.5 0 0 1 2.5-2.5H18"></path>
+                            </svg>
+                        </div>
+                        <h3 class="upload-heading" id="txt-upload-heading">Tap to upload or take a photo</h3>
+                        <p class="upload-subtext" id="txt-upload-subtext">JPG · PNG · WEBP · Max 10MB</p>
+                    </div>
+                    <div class="upload-actions">
+                        <button class="btn btn-primary btn-large btn-block" id="btn-trigger-camera">
+                            <span id="txt-btn-camera">Take Photo</span>
+                        </button>
+                        <button class="btn btn-secondary btn-large btn-block" id="btn-trigger-gallery">
+                            <span id="txt-btn-gallery">Upload from Gallery</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="cream-tips-block">
+                    <h4 class="tips-heading" id="txt-tips-title">💡 For better results</h4>
+                    <ul class="tips-list">
+                        <li><span class="tip-check">✓</span> <span id="txt-tip-1">Use good lighting</span></li>
+                        <li><span class="tip-check">✓</span> <span id="txt-tip-2">Keep the leaf clearly visible</span></li>
+                        <li><span class="tip-check">✓</span> <span id="txt-tip-3">Avoid blurry photos</span></li>
+                        <li><span class="tip-check">✓</span> <span id="txt-tip-4">Focus on the affected area</span></li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- SCREEN 3: IMAGE PREVIEW -->
+            <section class="screen" id="screen-preview">
+                <div class="screen-header">
+                    <button class="back-btn" id="btn-preview-back">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                    </button>
+                    <div class="screen-title-wrap">
+                        <h2 class="screen-title" id="txt-preview-title">Review Your Photo</h2>
+                        <p class="screen-subtitle" id="txt-preview-sub">Check if the leaf is clearly visible.</p>
+                    </div>
+                </div>
+
+                <div class="alert-banner alert-error hidden" id="preview-error-banner">
+                    <span id="txt-error-message">Invalid file selected. Please choose a valid image.</span>
+                </div>
+
+                <div class="preview-hero-frame">
+                    <img id="img-preview" src="" alt="Uploaded crop leaf preview">
+                </div>
+
+                <div class="preview-status-pill">
+                    <span class="pill-icon">✓</span>
+                    <span>Image looks good!</span>
+                </div>
+
+                <div class="file-info-chip">
+                    <div class="file-chip-details">
+                        <span class="chip-filename" id="file-name-disp">leaf.jpg</span>
+                        <span class="chip-meta" id="file-size-disp">2.4 MB · JPG</span>
+                    </div>
+                </div>
+
+                <div class="preview-actions">
+                    <button class="btn btn-primary btn-large btn-block" id="btn-confirm-analyze">
+                        <span id="txt-btn-analyze-leaf">🌿 Analyze Leaf →</span>
+                    </button>
+                    <button class="btn btn-secondary btn-large btn-block" id="btn-reselect-image">
+                        <span id="txt-btn-choose-another">Choose Another</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- SCREEN 4: AI ANALYSIS / LOADING -->
+            <section class="screen screen-dark-bg" id="screen-loading">
+                <div class="analysis-fullscreen-wrapper">
+                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80"
+                        alt="Backdrop" class="analysis-bg-img">
+                    <div class="analysis-bg-overlay"></div>
+                    <div class="analysis-content-box">
+                        <div class="scanning-circle-container">
+                            <div class="pulse-ring"></div>
+                            <div class="scanner-img-wrap">
+                                <img id="img-scanning-thumb" src="" alt="Leaf scanning preview">
+                                <div class="laser-scanner-line"></div>
+                            </div>
+                        </div>
+                        <h2 class="loading-heading" id="txt-loading-title">Analyzing your crop...</h2>
+                        <p class="loading-subheading" id="txt-loading-sub">Sending your photo to the CropCare AI model…</p>
+                        <div class="translucent-progress-card">
+                            <div class="checklist-row done" id="chk-step-1">
+                                <span class="chk-bullet">✓</span>
+                                <span id="txt-chk-1">Image quality checked</span>
+                            </div>
+                            <div class="checklist-row active" id="chk-step-2">
+                                <span class="chk-bullet spinner">○</span>
+                                <span id="txt-chk-2">Uploading to server &amp; running model…</span>
+                            </div>
+                        </div>
+                        <span class="loading-demo-tag" id="txt-loading-tag">Connected to backend</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SCREEN 5: DISEASE RESULT -->
+            <section class="screen" id="screen-result">
+                <div class="screen-header flex-header">
+                    <div class="flex-left">
+                        <button class="back-btn" id="btn-result-home">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="19" y1="12" x2="5" y2="12"></line>
+                                <polyline points="12 19 5 12 12 5"></polyline>
+                            </svg>
+                        </button>
+                        <div class="screen-title-wrap">
+                            <h2 class="screen-title" id="txt-report-title">Crop Health Report</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="report-hero-photo-wrap">
+                    <img id="img-result-display" src="" alt="Analyzed Crop Leaf">
+                    <div class="photo-gradient-overlay"></div>
+                    <div class="hero-crop-meta">
+                        <span class="crop-category-badge" id="res-crop-name">🍅 Tomato</span>
+                        <h3 class="disease-title" id="res-disease-title">Early Blight</h3>
+                        <p class="latin-title" id="res-scientific-name">Alternaria solani</p>
+                    </div>
+                </div>
+
+                <div class="report-metrics-row">
+                    <div class="severity-box">
+                        <span class="severity-title">Severity</span>
+                        <span class="severity-pill pill-moderate" id="res-severity-badge">Moderate</span>
+                    </div>
+                    <div class="confidence-gauge">
+                        <svg viewBox="0 0 36 36" class="gauge-svg">
+                            <path class="gauge-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+                            <path class="gauge-fill" id="res-confidence-path" stroke-dasharray="87, 100"
+                                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+                        </svg>
+                        <div class="gauge-text">
+                            <span class="gauge-percent" id="res-confidence-val">87%</span>
+                            <span class="gauge-label">AI Match</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="chip-meta" id="res-method-note" style="margin: -6px 4px 12px;"></p>
+
+                <div class="voice-banner">
+                    <button class="btn btn-audio-play" id="btn-listen-hindi">
+                        <span id="txt-btn-audio">🔊 Listen in Hindi</span>
+                    </button>
+                </div>
+
+                <div class="report-section-block">
+                    <h4 class="section-header-title" id="txt-symptoms-title">🌿 Symptoms</h4>
+                    <ul class="bullet-list" id="res-symptoms-list"></ul>
+                </div>
+
+                <div class="report-section-block">
+                    <h4 class="section-header-title" id="txt-prevention-title">🛡 Prevention</h4>
+                    <ul class="bullet-list" id="res-prevention-list"></ul>
+                </div>
+
+                <div class="report-section-block">
+                    <h4 class="section-header-title" id="txt-treatment-title">🌱 Treatment Options</h4>
+                    <div class="side-by-side-grid">
+                        <div class="treatment-box organic-box">
+                            <span class="box-badge">🌿 Organic</span>
+                            <ul class="box-list" id="res-organic-list"></ul>
+                        </div>
+                        <div class="treatment-box chemical-box">
+                            <span class="box-badge">🧪 Chemical</span>
+                            <ul class="box-list" id="res-chemical-list"></ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="safety-banner-box">
+                    <span class="safety-icon">⚠</span>
+                    <div>
+                        <strong id="txt-safety-title">Safety Information</strong>
+                        <ul class="bullet-list" id="res-safety-list" style="margin-top:4px;"></ul>
+                    </div>
+                </div>
+
+                <div class="report-actions">
+                    <button class="btn btn-primary btn-large btn-block" id="btn-result-another">
+                        <span id="txt-btn-analyze-another">Analyze Another Leaf</span>
+                    </button>
+                    <button class="btn btn-secondary btn-large btn-block" id="btn-save-history">
+                        <span id="txt-btn-save">Save to History ✓</span>
+                    </button>
+                </div>
+
+                <div class="proto-footer-note">
+                    <span>ℹ️ AI-generated guidance — always confirm with a local agricultural expert.</span>
+                </div>
+            </section>
+
+            <!-- SCREEN 6: LOW CONFIDENCE -->
+            <section class="screen screen-dark-bg" id="screen-low-confidence">
+                <div class="analysis-fullscreen-wrapper">
+                    <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=800&q=80"
+                        alt="Backdrop" class="analysis-bg-img">
+                    <div class="analysis-bg-overlay"></div>
+                    <div class="analysis-content-box">
+                        <div class="translucent-card-modal">
+                            <div class="warning-icon-wrap">🌿</div>
+                            <h3 class="low-conf-title" id="txt-lowconf-heading">We couldn't identify the disease confidently.</h3>
+                            <p class="low-conf-msg" id="txt-lowconf-desc">
+                                Please try another photo with better lighting and the leaf clearly visible.
+                            </p>
+                            <div class="low-conf-tips-block">
+                                <h4 id="txt-lowconf-tips-title">For better results</h4>
+                                <ul class="tips-list light-tips">
+                                    <li><span class="tip-check">✓</span> <span id="txt-lc-tip1">Good lighting</span></li>
+                                    <li><span class="tip-check">✓</span> <span id="txt-lc-tip2">Leaf clearly visible</span></li>
+                                    <li><span class="tip-check">✓</span> <span id="txt-lc-tip3">Avoid blurry images</span></li>
+                                </ul>
+                            </div>
+                            <button class="btn btn-primary btn-large btn-block" id="btn-try-another-photo">
+                                <span id="txt-btn-retry">📷 Try Another Photo</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SCREEN 7: HISTORY -->
+            <section class="screen" id="screen-history">
+                <div class="screen-header">
+                    <div class="screen-title-wrap">
+                        <h2 class="screen-title" id="txt-history-title">Scan History</h2>
+                        <p class="screen-subtitle" id="txt-history-sub">Your previous crop checks (this session)</p>
+                    </div>
+                </div>
+                <div class="filter-pills-bar">
+                    <button class="pill-btn active" data-filter="all">All</button>
+                    <button class="pill-btn" data-filter="Tomato">Tomato</button>
+                    <button class="pill-btn" data-filter="Potato">Potato</button>
+                    <button class="pill-btn" data-filter="Bell Pepper">Pepper</button>
+                </div>
+                <div class="history-list-wrapper" id="history-items-container"></div>
+            </section>
+
+            <!-- SCREEN 8: FARMER SUPPORT -->
+            <section class="screen" id="screen-support">
+                <div class="support-photo-banner">
+                    <img src="https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=800&q=80"
+                        alt="Farmer in green crop field" class="support-bg-img">
+                    <div class="support-overlay"></div>
+                    <div class="support-banner-content">
+                        <h2 class="support-hero-title">Together for Healthier Crops</h2>
+                        <p class="support-hero-sub">Get the right support, at the right time.</p>
+                    </div>
+                </div>
+                <div class="compact-directory-list">
+                    <button class="directory-row" id="btn-call-helpline">
+                        <div class="row-left">
+                            <span class="row-icon">📞</span>
+                            <div class="row-text">
+                                <span class="row-title">Agricultural Helplines</span>
+                                <span class="row-desc">Kisan Call Center: 1800-180-1551</span>
+                            </div>
+                        </div>
+                        <span class="row-arrow">→</span>
+                    </button>
+                    <button class="directory-row" id="btn-scheme-info">
+                        <div class="row-left">
+                            <span class="row-icon">🏛</span>
+                            <div class="row-text">
+                                <span class="row-title">Government Schemes</span>
+                                <span class="row-desc">PM-Kisan Samman Nidhi info</span>
+                            </div>
+                        </div>
+                        <span class="row-arrow">→</span>
+                    </button>
+                    <button class="directory-row" id="btn-insurance-info">
+                        <div class="row-left">
+                            <span class="row-icon">🛡</span>
+                            <div class="row-text">
+                                <span class="row-title">Crop Insurance</span>
+                                <span class="row-desc">PMFBY claim guidelines</span>
+                            </div>
+                        </div>
+                        <span class="row-arrow">→</span>
+                    </button>
+                </div>
+                <div class="compact-question-card">
+                    <h4 class="question-title">Ask an Agricultural Question</h4>
+                    <textarea class="form-textarea" id="feedback-text" rows="2" placeholder="Describe your crop issue..."></textarea>
+                    <button class="btn btn-primary btn-block" id="btn-submit-feedback">Submit Question (Demo)</button>
+                    <div class="alert-banner alert-success hidden" id="feedback-success">✓ Query recorded for demo.</div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Fixed Bottom Navigation -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" data-screen="screen-home" id="nav-home">
+                <div class="nav-icon">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                </div>
+                <span class="nav-label" id="nav-txt-home">Home</span>
+            </button>
+            <button class="nav-item" data-screen="screen-history" id="nav-history">
+                <div class="nav-icon">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path>
+                    </svg>
+                </div>
+                <span class="nav-label" id="nav-txt-history">History</span>
+            </button>
+            <button class="nav-item nav-scan-prominent" data-screen="screen-scan" id="nav-scan">
+                <div class="nav-scan-circle">
+                    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                        <circle cx="12" cy="13" r="4"></circle>
+                    </svg>
+                </div>
+                <span class="nav-label" id="nav-txt-scan">Scan</span>
+            </button>
+            <button class="nav-item" data-screen="screen-support" id="nav-support">
+                <div class="nav-icon">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                </div>
+                <span class="nav-label" id="nav-txt-support">Support</span>
+            </button>
+        </nav>
+
+        <!-- Developer / Offline-Demo Panel -->
+        <div class="dev-modal hidden" id="dev-modal">
+            <div class="dev-modal-content">
+                <h3>🛠️ Offline Demo Panel</h3>
+                <p>Use this only if the backend isn't reachable and you still need to show the UI flow.</p>
+                <div class="dev-options">
+                    <button class="btn btn-small btn-primary" id="btn-dev-sim-high">Simulate a confident result</button>
+                    <button class="btn btn-small btn-secondary" id="btn-dev-sim-low">Simulate a low-confidence result</button>
+                </div>
+                <button class="btn btn-outline btn-small" id="btn-close-dev">Close Panel</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>

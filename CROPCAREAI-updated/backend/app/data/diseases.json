@@ -1,0 +1,387 @@
+{
+  "pepper_bell_bacterial_spot": {
+    "crop": "Bell Pepper",
+    "disease_name": "Bacterial Spot",
+    "scientific_name": "Xanthomonas campestris pv. vesicatoria",
+    "severity": "Moderate",
+    "description": "A bacterial disease of pepper foliage and fruit that spreads rapidly in warm, wet, humid conditions and via splashing water.",
+    "symptoms": [
+      "Small, water-soaked spots on leaves that turn dark brown with a yellow halo",
+      "Spots may merge, causing large dead patches and leaf drop",
+      "Raised, scab-like brown spots on fruit surface",
+      "Reduced marketable yield due to fruit blemishes"
+    ],
+    "prevention": [
+      "Use certified disease-free seeds and transplants",
+      "Avoid working in fields when foliage is wet",
+      "Rotate crops away from peppers/tomatoes for at least 1-2 years",
+      "Avoid overhead irrigation; water at the base of the plant",
+      "Space plants for good airflow"
+    ],
+    "treatment": {
+      "organic": ["Copper-based bactericide sprays", "Remove and destroy infected leaves/plants"],
+      "chemical": ["Copper hydroxide combined with mancozeb (per label)", "Streptomycin-based sprays where locally approved"]
+    },
+    "safety_notes": [
+      "This system does not provide dosages — follow the product label and local extension guidance",
+      "Bacterial diseases do not respond to fungicides alone; confirm diagnosis before treating",
+      "Wear gloves and a mask when spraying"
+    ]
+  },
+  "pepper_bell_healthy": {
+    "crop": "Bell Pepper",
+    "disease_name": "Healthy",
+    "scientific_name": null,
+    "severity": "None",
+    "description": "No disease symptoms detected on this bell pepper leaf.",
+    "symptoms": [],
+    "prevention": [
+      "Continue routine field monitoring",
+      "Maintain balanced fertilization and consistent watering",
+      "Scout for early pest activity (aphids, thrips) that can transmit disease"
+    ],
+    "treatment": { "organic": [], "chemical": [] },
+    "safety_notes": [
+      "This is an automated visual assessment, not a substitute for regular field inspection"
+    ]
+  },
+  "potato_early_blight": {
+    "crop": "Potato",
+    "disease_name": "Early Blight",
+    "scientific_name": "Alternaria solani",
+    "severity": "Moderate",
+    "description": "A fungal disease of potato foliage and tubers, closely related to tomato early blight, most damaging to stressed or nutrient-deficient plants.",
+    "symptoms": [
+      "Dark brown spots with concentric ring patterns on lower leaves",
+      "Yellow halo surrounding lesions",
+      "Leaves become brittle and drop prematurely",
+      "Dark, sunken, dry lesions on tubers with slightly raised borders"
+    ],
+    "prevention": [
+      "Rotate crops with non-solanaceous plants for at least 2 years",
+      "Maintain balanced soil fertility — nitrogen-stressed plants are more susceptible",
+      "Avoid overhead watering; irrigate early in the day if unavoidable",
+      "Hill soil properly to reduce tuber exposure to spores"
+    ],
+    "treatment": {
+      "organic": ["Copper-based fungicides", "Compost tea foliar applications to support plant immune response"],
+      "chemical": ["Chlorothalonil-based fungicides", "Mancozeb-based fungicides"]
+    },
+    "safety_notes": [
+      "Follow product label instructions strictly — no dosage recommendations are given here",
+      "Observe pre-harvest intervals before consuming treated tubers",
+      "Consult your local Krishi Vigyan Kendra or agricultural extension office"
+    ]
+  },
+  "potato_late_blight": {
+    "crop": "Potato",
+    "disease_name": "Late Blight",
+    "scientific_name": "Phytophthora infestans",
+    "severity": "High",
+    "description": "The same pathogen responsible for the historic Irish potato famine; remains one of the most economically damaging potato diseases worldwide.",
+    "symptoms": [
+      "Water-soaked, pale to dark green lesions on leaf tips and edges",
+      "Lesions quickly turn brown to black and expand rapidly",
+      "White fungal growth visible on leaf undersides in humid weather",
+      "Reddish-brown dry rot inside infected tubers"
+    ],
+    "prevention": [
+      "Use certified disease-free seed potatoes",
+      "Plant resistant varieties where available",
+      "Improve field drainage and avoid excess irrigation",
+      "Destroy cull piles and volunteer plants that can harbor spores over winter"
+    ],
+    "treatment": {
+      "organic": ["Preventive copper-based fungicide applications before wet weather periods"],
+      "chemical": ["Fungicides containing mandipropamid, chlorothalonil, or cymoxanil, applied preventively"]
+    },
+    "safety_notes": [
+      "This disease can devastate a field within days — early reporting to an extension officer is critical",
+      "This system does not provide dosages; follow local agricultural authority guidance",
+      "Destroy severely infected plants to prevent spread to healthy fields"
+    ]
+  },
+  "potato_healthy": {
+    "crop": "Potato",
+    "disease_name": "Healthy",
+    "scientific_name": null,
+    "severity": "None",
+    "description": "No disease symptoms detected on this potato leaf.",
+    "symptoms": [],
+    "prevention": [
+      "Continue regular field monitoring for early symptom detection",
+      "Maintain balanced irrigation and fertilization",
+      "Practice crop rotation as a preventive measure even when no disease is present"
+    ],
+    "treatment": { "organic": [], "chemical": [] },
+    "safety_notes": [
+      "This is an automated visual assessment, not a substitute for regular field inspection"
+    ]
+  },
+  "tomato_bacterial_spot": {
+    "crop": "Tomato",
+    "disease_name": "Bacterial Spot",
+    "scientific_name": "Xanthomonas spp.",
+    "severity": "Moderate",
+    "description": "A bacterial disease affecting tomato leaves, stems, and fruit, favored by warm, humid, rainy weather and overhead irrigation.",
+    "symptoms": [
+      "Small, dark, greasy-looking spots on leaves, often with a yellow halo",
+      "Spots on stems and fruit that may become raised and scab-like",
+      "Severe infections cause defoliation and reduced fruit quality"
+    ],
+    "prevention": [
+      "Use certified disease-free seed and transplants",
+      "Avoid overhead watering and working with wet plants",
+      "Rotate crops away from tomatoes/peppers for 1-2 seasons",
+      "Sanitize tools and stakes between uses"
+    ],
+    "treatment": {
+      "organic": ["Copper-based bactericide sprays applied preventively", "Remove and destroy infected foliage"],
+      "chemical": ["Copper hydroxide + mancozeb combination sprays (per label)"]
+    },
+    "safety_notes": [
+      "Bacterial spot does not respond to standard fungicides — confirm diagnosis before treating",
+      "This system does not provide dosages; follow the product label and local extension guidance"
+    ]
+  },
+  "tomato_early_blight": {
+    "crop": "Tomato",
+    "disease_name": "Early Blight",
+    "scientific_name": "Alternaria solani",
+    "severity": "Moderate",
+    "description": "A common fungal disease affecting tomato foliage, stems, and fruit, typically appearing on older, lower leaves first and progressing upward.",
+    "symptoms": [
+      "Small, dark brown to black spots on lower/older leaves",
+      "Spots develop concentric rings, giving a 'target board' appearance",
+      "Yellowing (chlorosis) of leaf tissue surrounding spots",
+      "Premature leaf drop, starting from the bottom of the plant",
+      "Dark, sunken lesions may appear on stems and fruit"
+    ],
+    "prevention": [
+      "Rotate crops — avoid planting tomatoes/potatoes in the same soil for 2-3 years",
+      "Use certified disease-free seeds and transplants",
+      "Space plants adequately to improve air circulation",
+      "Avoid overhead irrigation; water at the base of the plant",
+      "Remove and destroy infected plant debris after harvest",
+      "Mulch around the base of plants to reduce soil splash onto leaves"
+    ],
+    "treatment": {
+      "organic": ["Copper-based fungicides, applied per product label", "Neem oil foliar spray", "Bacillus subtilis-based biofungicides"],
+      "chemical": ["Chlorothalonil-based fungicides", "Mancozeb-based fungicides", "Azoxystrobin-based fungicides"]
+    },
+    "safety_notes": [
+      "Always follow the product label for dosage and pre-harvest intervals — this system does not provide dosages",
+      "Wear appropriate protective equipment when applying any fungicide",
+      "Consult your local agricultural extension office before applying chemical treatments",
+      "Rotate fungicide classes to avoid resistance buildup"
+    ]
+  },
+  "tomato_late_blight": {
+    "crop": "Tomato",
+    "disease_name": "Late Blight",
+    "scientific_name": "Phytophthora infestans",
+    "severity": "High",
+    "description": "An aggressive water-mold disease capable of destroying entire tomato and potato crops within days under cool, wet conditions.",
+    "symptoms": [
+      "Large, irregular, water-soaked greenish-black lesions on leaves",
+      "White, fuzzy fungal growth on the underside of leaves in humid conditions",
+      "Rapid browning and collapse of foliage",
+      "Dark, firm, greasy-looking lesions on fruit",
+      "Distinct musty odor from severely infected plants"
+    ],
+    "prevention": [
+      "Plant resistant or tolerant varieties where available",
+      "Avoid overhead irrigation and excess humidity around plants",
+      "Ensure good airflow through proper spacing and pruning",
+      "Monitor weather — risk increases sharply in cool, wet, humid conditions",
+      "Destroy volunteer potato/tomato plants which can harbor the pathogen"
+    ],
+    "treatment": {
+      "organic": ["Copper-based fungicides applied preventively before disease onset", "Remove and destroy infected plants immediately to slow spread"],
+      "chemical": ["Chlorothalonil-based fungicides", "Mandipropamid or cymoxanil-based fungicides (systemic/translaminar)"]
+    },
+    "safety_notes": [
+      "Late blight spreads extremely fast — isolate/remove infected plants immediately",
+      "This system does not provide dosages; follow local agricultural guidance",
+      "Consult a plant pathologist or extension officer for confirmation, as late blight can be confused with other blights"
+    ]
+  },
+  "tomato_leaf_mold": {
+    "crop": "Tomato",
+    "disease_name": "Leaf Mold",
+    "scientific_name": "Passalora fulva (syn. Fulvia fulva)",
+    "severity": "Mild",
+    "description": "A fungal disease most common in humid greenhouse conditions, primarily affecting leaves and rarely fruit.",
+    "symptoms": [
+      "Pale green to yellow spots on the upper leaf surface",
+      "Olive-green to grayish-brown velvety mold on the leaf underside, opposite the yellow spots",
+      "Leaves curl, wither, and drop in severe cases"
+    ],
+    "prevention": [
+      "Improve ventilation, especially in greenhouses/polyhouses",
+      "Reduce humidity around foliage; avoid overhead watering",
+      "Space and prune plants for airflow",
+      "Use resistant varieties where available"
+    ],
+    "treatment": {
+      "organic": ["Improve airflow/reduce humidity (often sufficient alone)", "Copper-based fungicide sprays"],
+      "chemical": ["Chlorothalonil or mancozeb-based fungicides"]
+    },
+    "safety_notes": [
+      "This system does not provide dosages; follow the product label",
+      "Humidity control is often more effective than spraying for this disease"
+    ]
+  },
+  "tomato_septoria_leaf_spot": {
+    "crop": "Tomato",
+    "disease_name": "Septoria Leaf Spot",
+    "scientific_name": "Septoria lycopersici",
+    "severity": "Moderate",
+    "description": "A fungal disease that starts on lower, older leaves and can quickly spread upward, causing significant defoliation if untreated.",
+    "symptoms": [
+      "Small, circular spots with dark brown margins and gray/tan centers",
+      "Tiny black specks (pycnidia) visible within the spot centers",
+      "Spots are numerous and can merge, causing yellowing and leaf drop",
+      "Fruit is rarely affected directly, but yield drops from reduced foliage"
+    ],
+    "prevention": [
+      "Rotate crops; avoid planting tomatoes in the same spot each year",
+      "Remove lower infected leaves and plant debris promptly",
+      "Avoid overhead watering; mulch to reduce soil splash",
+      "Space plants for good air circulation"
+    ],
+    "treatment": {
+      "organic": ["Copper-based fungicides", "Remove and destroy infected lower leaves"],
+      "chemical": ["Chlorothalonil-based fungicides", "Mancozeb-based fungicides"]
+    },
+    "safety_notes": [
+      "This system does not provide dosages; follow local extension guidance",
+      "Start preventive sprays early in wet seasons — this disease progresses quickly once established"
+    ]
+  },
+  "tomato_spider_mites_two_spotted_spider_mite": {
+    "crop": "Tomato",
+    "disease_name": "Two-Spotted Spider Mite Infestation",
+    "scientific_name": "Tetranychus urticae",
+    "severity": "Moderate",
+    "description": "A tiny sap-sucking pest (not a fungal/bacterial disease) that thrives in hot, dry conditions and can rapidly damage foliage.",
+    "symptoms": [
+      "Fine yellow/white stippling or speckling on leaves",
+      "Leaves take on a bronzed or dusty appearance",
+      "Fine webbing visible on the underside of leaves and between stems in heavy infestations",
+      "Leaf curling and drop under severe infestation"
+    ],
+    "prevention": [
+      "Keep plants well-watered — mites thrive under drought stress",
+      "Avoid excess nitrogen fertilization, which favors mite reproduction",
+      "Encourage natural predators (predatory mites, ladybirds) by minimizing broad-spectrum insecticide use",
+      "Regularly hose down foliage to disrupt mite colonies"
+    ],
+    "treatment": {
+      "organic": ["Insecticidal soap or neem oil sprays, targeting leaf undersides", "Introduce predatory mites (e.g. Phytoseiulus persimilis) where feasible"],
+      "chemical": ["Miticides labeled specifically for spider mites (rotate active ingredients to avoid resistance)"]
+    },
+    "safety_notes": [
+      "This system does not provide dosages; follow the product label",
+      "General insecticides often make mite problems worse by killing natural predators"
+    ]
+  },
+  "tomato_target_spot": {
+    "crop": "Tomato",
+    "disease_name": "Target Spot",
+    "scientific_name": "Corynespora cassiicola",
+    "severity": "Moderate",
+    "description": "A fungal disease producing concentric-ring lesions similar to early blight, affecting leaves, stems, and fruit in warm, humid climates.",
+    "symptoms": [
+      "Brown lesions with concentric rings (target-like appearance) on leaves",
+      "Lesions may also appear on stems and fruit as sunken, dark spots",
+      "Severe infection causes extensive defoliation"
+    ],
+    "prevention": [
+      "Rotate crops and avoid dense planting",
+      "Remove and destroy crop debris after harvest",
+      "Avoid overhead irrigation and prolonged leaf wetness",
+      "Use resistant varieties where available"
+    ],
+    "treatment": {
+      "organic": ["Copper-based fungicides applied preventively"],
+      "chemical": ["Chlorothalonil or azoxystrobin-based fungicides"]
+    },
+    "safety_notes": [
+      "This system does not provide dosages; follow the product label and local guidance",
+      "Can be visually confused with early blight — confirm with a local expert if uncertain"
+    ]
+  },
+  "tomato_yellow_leaf_curl_virus": {
+    "crop": "Tomato",
+    "disease_name": "Tomato Yellow Leaf Curl Virus",
+    "scientific_name": "Tomato yellow leaf curl virus (TYLCV)",
+    "severity": "High",
+    "description": "A viral disease transmitted by whiteflies that can cause severe stunting and yield loss, especially in young plants.",
+    "symptoms": [
+      "Upward curling and yellowing of leaflet margins",
+      "Marked stunting of plant growth",
+      "Flower drop and drastically reduced fruit set",
+      "Smaller, misshapen leaves overall"
+    ],
+    "prevention": [
+      "Control whitefly populations (the virus's insect vector) with sticky traps and reflective mulches",
+      "Use virus-resistant tomato varieties where available",
+      "Remove and destroy infected plants promptly to reduce virus reservoir",
+      "Use insect-proof netting on nurseries/seedbeds"
+    ],
+    "treatment": {
+      "organic": ["No cure once infected — focus on whitefly control (yellow sticky traps, neem oil against whiteflies)", "Remove and destroy infected plants"],
+      "chemical": ["Insecticides targeting whiteflies (not the virus itself) — rotate modes of action to prevent resistance"]
+    },
+    "safety_notes": [
+      "There is no direct chemical cure for the virus itself — management targets the whitefly vector",
+      "This system does not provide dosages; consult local extension services for approved insecticides",
+      "Remove infected plants promptly to protect the rest of the field"
+    ]
+  },
+  "tomato_mosaic_virus": {
+    "crop": "Tomato",
+    "disease_name": "Tomato Mosaic Virus",
+    "scientific_name": "Tomato mosaic virus (ToMV)",
+    "severity": "Moderate",
+    "description": "A highly stable, easily spread viral disease affecting leaves and fruit quality, often transmitted mechanically through handling and tools.",
+    "symptoms": [
+      "Light and dark green mottled/mosaic pattern on leaves",
+      "Leaf distortion, curling, and fern-like narrowing in severe cases",
+      "Stunted plant growth",
+      "Mottled or uneven ripening on fruit"
+    ],
+    "prevention": [
+      "Use certified virus-free seed and resistant varieties",
+      "Disinfect tools, hands, and stakes between plants (this virus spreads easily by contact)",
+      "Avoid tobacco use/handling near plants (the virus is related to tobacco mosaic virus)",
+      "Remove and destroy infected plants promptly"
+    ],
+    "treatment": {
+      "organic": ["No cure once infected — remove and destroy infected plants", "Sanitize tools and hands between plants to prevent spread"],
+      "chemical": ["No chemical cure exists for viral infections — focus entirely on prevention and sanitation"]
+    },
+    "safety_notes": [
+      "There is no curative treatment for viral infections — this system's chemical/organic lists here focus on containment, not cure",
+      "Wash hands and disinfect tools between handling infected and healthy plants"
+    ]
+  },
+  "tomato_healthy": {
+    "crop": "Tomato",
+    "disease_name": "Healthy",
+    "scientific_name": null,
+    "severity": "None",
+    "description": "No disease symptoms detected on this tomato leaf.",
+    "symptoms": [],
+    "prevention": [
+      "Continue regular field monitoring for early symptom detection",
+      "Maintain balanced irrigation and fertilization",
+      "Practice crop rotation as a preventive measure even when no disease is present"
+    ],
+    "treatment": { "organic": [], "chemical": [] },
+    "safety_notes": [
+      "This is an automated visual assessment, not a substitute for regular field inspection"
+    ]
+  }
+}
