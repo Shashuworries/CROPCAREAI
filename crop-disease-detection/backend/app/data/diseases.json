@@ -1,0 +1,194 @@
+{
+  "tomato_early_blight": {
+    "crop": "Tomato",
+    "disease_name": "Early Blight",
+    "scientific_name": "Alternaria solani",
+    "description": "A common fungal disease affecting tomato foliage, stems, and fruit, typically appearing on older, lower leaves first and progressing upward.",
+    "symptoms": [
+      "Small, dark brown to black spots on lower/older leaves",
+      "Spots develop concentric rings, giving a 'target board' appearance",
+      "Yellowing (chlorosis) of leaf tissue surrounding spots",
+      "Premature leaf drop, starting from the bottom of the plant",
+      "Dark, sunken lesions may appear on stems and fruit"
+    ],
+    "prevention": [
+      "Rotate crops — avoid planting tomatoes/potatoes in the same soil for 2-3 years",
+      "Use certified disease-free seeds and transplants",
+      "Space plants adequately to improve air circulation",
+      "Avoid overhead irrigation; water at the base of the plant",
+      "Remove and destroy infected plant debris after harvest",
+      "Mulch around the base of plants to reduce soil splash onto leaves"
+    ],
+    "treatment": {
+      "organic": [
+        "Copper-based fungicides, applied per product label",
+        "Neem oil foliar spray",
+        "Bacillus subtilis-based biofungicides"
+      ],
+      "chemical": [
+        "Chlorothalonil-based fungicides",
+        "Mancozeb-based fungicides",
+        "Azoxystrobin-based fungicides"
+      ]
+    },
+    "safety_notes": [
+      "Always follow the product label for dosage and pre-harvest intervals — this system does not provide dosages",
+      "Wear appropriate protective equipment when applying any fungicide",
+      "Consult your local agricultural extension office before applying chemical treatments",
+      "Rotate fungicide classes to avoid resistance buildup"
+    ]
+  },
+  "tomato_late_blight": {
+    "crop": "Tomato",
+    "disease_name": "Late Blight",
+    "scientific_name": "Phytophthora infestans",
+    "description": "An aggressive water-mold disease capable of destroying entire tomato and potato crops within days under cool, wet conditions.",
+    "symptoms": [
+      "Large, irregular, water-soaked greenish-black lesions on leaves",
+      "White, fuzzy fungal growth on the underside of leaves in humid conditions",
+      "Rapid browning and collapse of foliage",
+      "Dark, firm, greasy-looking lesions on fruit",
+      "Distinct musty odor from severely infected plants"
+    ],
+    "prevention": [
+      "Plant resistant or tolerant varieties where available",
+      "Avoid overhead irrigation and excess humidity around plants",
+      "Ensure good airflow through proper spacing and pruning",
+      "Monitor weather — risk increases sharply in cool, wet, humid conditions",
+      "Destroy volunteer potato/tomato plants which can harbor the pathogen"
+    ],
+    "treatment": {
+      "organic": [
+        "Copper-based fungicides applied preventively before disease onset",
+        "Remove and destroy infected plants immediately to slow spread"
+      ],
+      "chemical": [
+        "Chlorothalonil-based fungicides",
+        "Mandipropamid or cymoxanil-based fungicides (systemic/translaminar)"
+      ]
+    },
+    "safety_notes": [
+      "Late blight spreads extremely fast — isolate/remove infected plants immediately",
+      "This system does not provide dosages; follow local agricultural guidance",
+      "Consult a plant pathologist or extension officer for confirmation, as late blight can be confused with other blights"
+    ]
+  },
+  "potato_early_blight": {
+    "crop": "Potato",
+    "disease_name": "Early Blight",
+    "scientific_name": "Alternaria solani",
+    "description": "A fungal disease of potato foliage and tubers, closely related to tomato early blight, most damaging to stressed or nutrient-deficient plants.",
+    "symptoms": [
+      "Dark brown spots with concentric ring patterns on lower leaves",
+      "Yellow halo surrounding lesions",
+      "Leaves become brittle and drop prematurely",
+      "Dark, sunken, dry lesions on tubers with slightly raised borders"
+    ],
+    "prevention": [
+      "Rotate crops with non-solanaceous plants for at least 2 years",
+      "Maintain balanced soil fertility — nitrogen-stressed plants are more susceptible",
+      "Avoid overhead watering; irrigate early in the day if unavoidable",
+      "Hill soil properly to reduce tuber exposure to spores"
+    ],
+    "treatment": {
+      "organic": [
+        "Copper-based fungicides",
+        "Compost tea foliar applications to support plant immune response"
+      ],
+      "chemical": [
+        "Chlorothalonil-based fungicides",
+        "Mancozeb-based fungicides"
+      ]
+    },
+    "safety_notes": [
+      "Follow product label instructions strictly — no dosage recommendations are given here",
+      "Observe pre-harvest intervals before consuming treated tubers",
+      "Consult your local Krishi Vigyan Kendra or agricultural extension office"
+    ]
+  },
+  "potato_late_blight": {
+    "crop": "Potato",
+    "disease_name": "Late Blight",
+    "scientific_name": "Phytophthora infestans",
+    "description": "The same pathogen responsible for the historic Irish potato famine; remains one of the most economically damaging potato diseases worldwide.",
+    "symptoms": [
+      "Water-soaked, pale to dark green lesions on leaf tips and edges",
+      "Lesions quickly turn brown to black and expand rapidly",
+      "White fungal growth visible on leaf undersides in humid weather",
+      "Reddish-brown dry rot inside infected tubers"
+    ],
+    "prevention": [
+      "Use certified disease-free seed potatoes",
+      "Plant resistant varieties where available",
+      "Improve field drainage and avoid excess irrigation",
+      "Destroy cull piles and volunteer plants that can harbor spores over winter"
+    ],
+    "treatment": {
+      "organic": [
+        "Preventive copper-based fungicide applications before wet weather periods"
+      ],
+      "chemical": [
+        "Fungicides containing mandipropamid, chlorothalonil, or cymoxanil, applied preventively"
+      ]
+    },
+    "safety_notes": [
+      "This disease can devastate a field within days — early reporting to an extension officer is critical",
+      "This system does not provide dosages; follow local agricultural authority guidance",
+      "Destroy severely infected plants to prevent spread to healthy fields"
+    ]
+  },
+  "rice_leaf_blast": {
+    "crop": "Rice",
+    "disease_name": "Leaf Blast",
+    "scientific_name": "Magnaporthe oryzae",
+    "description": "One of the most destructive fungal diseases of rice worldwide, capable of affecting leaves, nodes, necks, and panicles.",
+    "symptoms": [
+      "Small, diamond/spindle-shaped lesions with gray-white centers and brown margins",
+      "Lesions may merge, causing entire leaves to wither",
+      "Grayish lesions at nodes, causing stems to break easily",
+      "Neck rot at panicle base, leading to empty or partially filled grains"
+    ],
+    "prevention": [
+      "Use resistant rice varieties suited to your region",
+      "Avoid excessive nitrogen fertilization, which increases susceptibility",
+      "Maintain proper field water management — avoid drought stress",
+      "Ensure balanced spacing to reduce humidity buildup in the canopy",
+      "Remove and destroy infected crop residue after harvest"
+    ],
+    "treatment": {
+      "organic": [
+        "Silicon-based soil amendments to strengthen cell walls (supportive, not curative)",
+        "Trichoderma-based biofungicide seed/soil treatment"
+      ],
+      "chemical": [
+        "Tricyclazole-based fungicides",
+        "Azoxystrobin or isoprothiolane-based fungicides"
+      ]
+    },
+    "safety_notes": [
+      "This system does not provide dosages — always follow local agricultural extension recommendations",
+      "Confirm diagnosis with a local expert where possible, as blast can resemble brown spot disease",
+      "Avoid fungicide overuse; rotate active ingredients to prevent resistance"
+    ]
+  },
+  "healthy": {
+    "crop": "Various",
+    "disease_name": "Healthy",
+    "scientific_name": null,
+    "description": "No disease symptoms detected. The leaf appears healthy based on the visual analysis performed.",
+    "symptoms": [],
+    "prevention": [
+      "Continue regular field monitoring for early symptom detection",
+      "Maintain balanced irrigation and fertilization",
+      "Practice crop rotation as a preventive measure even when no disease is present"
+    ],
+    "treatment": {
+      "organic": [],
+      "chemical": []
+    },
+    "safety_notes": [
+      "This is an automated visual assessment and not a substitute for regular field inspection",
+      "If the plant shows symptoms not visible in the photographed leaf, consult an agricultural expert"
+    ]
+  }
+}

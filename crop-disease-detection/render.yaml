@@ -1,0 +1,27 @@
+# Render Blueprint — https://render.com/docs/blueprint-spec
+#
+# IMPORTANT — read before deploying:
+# Loading BOTH TensorFlow (MobileNetV3Small) and PyTorch (ResNet50) into
+# memory at once, simultaneously, realistically needs 1-2GB of RAM. Render's
+# free tier gives 512MB, which is very likely to OOM-crash on startup once
+# both models are trained and loaded. For a real deployment:
+#   - Use at least the "Starter" plan (512MB won't cut it) — check
+#     Render's current pricing/plan RAM allocations before choosing, or
+#   - Deploy classifier-only (skip building reference_embeddings.npz) to
+#     roughly halve memory use, or
+#   - Just run the backend locally for your viva/demo — no network
+#     dependency, no cold starts, no memory ceiling to worry about.
+#
+# This file assumes you've already pushed backend/Dockerfile to your repo.
+
+services:
+  - type: web
+    name: crop-disease-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: starter  # do not use "free" once both models are trained — see note above
+    envVars:
+      - key: PORT
+        value: 8000
+    healthCheckPath: /health
