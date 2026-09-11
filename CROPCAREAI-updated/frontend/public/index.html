@@ -1,148 +1,367 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>CropCare — Leaf Diagnosis</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CropCare AI - Smartphone Crop Disease Detection & Farmer Support System</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <div id="standbyBanner" class="standby-banner" hidden>
-    <span class="standby-banner__dot"></span>
-    <span id="standbyBannerText">Checking diagnostic engine status…</span>
-  </div>
+    <!-- Outer Smartphone Device Frame (Emulates native app at 390px x 844px) -->
+    <div class="device-container">
 
-  <header class="site-header">
-    <div class="wrap site-header__inner">
-      <div class="brand">
-        <svg class="brand__mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M20 4C11 4 5 12 5 22c0 8 6 14 15 14 9 0 15-6 15-14C35 12 29 4 20 4Z" stroke="currentColor" stroke-width="1.6"/>
-          <path d="M20 8v24M20 8c-5 3-8 8-8 14M20 8c5 3 8 8 8 14" stroke="currentColor" stroke-width="1.2"/>
-        </svg>
-        <span class="brand__name">CropCare</span>
-      </div>
-      <span class="brand__tag">Field diagnosis, from a photo</span>
-    </div>
-  </header>
+        <!-- Elegant Header Bar -->
+        <header class="app-header">
+            <div class="header-brand" id="brand-logo" title="Double tap for developer menu">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.4 19 2c1 2 2 4.12 2 9a7 7 0 0 1-10 9z"></path>
+                        <path d="M11 20v-5.5a2.5 2.5 0 0 1 2.5-2.5H18"></path>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-title">CropCare AI</span>
 
-  <main class="wrap">
-
-    <section class="intro">
-      <h1>Show us the leaf. We'll tell you what's happening.</h1>
-      <p class="intro__lede">
-        Upload a clear photo of a crop leaf and CropCare compares it against a trained
-        model and a reference library to flag disease, offer treatment guidance, and —
-        just as importantly — tell you plainly when it isn't sure.
-      </p>
-    </section>
-
-    <section class="workspace">
-
-      <!-- LEFT: specimen card / upload -->
-      <div class="specimen-card">
-        <div class="specimen-card__label">Specimen</div>
-
-        <div id="dropzone" class="dropzone" tabindex="0" role="button"
-             aria-label="Upload a leaf photo">
-          <div id="dropzoneEmpty" class="dropzone__empty">
-            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="dropzone__icon">
-              <rect x="6" y="10" width="36" height="28" rx="2" stroke="currentColor" stroke-width="1.6"/>
-              <circle cx="16" cy="20" r="3" stroke="currentColor" stroke-width="1.6"/>
-              <path d="M6 32l10-9 8 7 6-5 12 10" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-            </svg>
-            <p class="dropzone__title">Drag a photo here, or tap to choose one</p>
-            <p class="dropzone__hint">JPG, PNG or WEBP · up to 10MB · one leaf, filling most of the frame</p>
-          </div>
-
-          <div id="dropzonePreview" class="dropzone__preview" hidden>
-            <img id="previewImg" alt="Uploaded leaf preview" />
-            <button id="clearBtn" type="button" class="clear-btn" aria-label="Remove photo">✕</button>
-          </div>
-
-          <input id="fileInput" type="file" accept="image/jpeg,image/png,image/webp" hidden />
-        </div>
-
-        <button id="analyzeBtn" class="btn btn--primary" disabled>Analyze leaf</button>
-
-        <p id="formError" class="form-error" hidden></p>
-      </div>
-
-      <!-- RIGHT: result panel -->
-      <div class="result-panel" id="resultPanel">
-
-        <div id="resultIdle" class="result-state">
-          <p class="result-state__title">Waiting on a photo</p>
-          <p class="result-state__body">Once you analyze a leaf, the diagnosis, confidence,
-            and care guidance will appear here.</p>
-        </div>
-
-        <div id="resultLoading" class="result-state" hidden>
-          <div class="spinner" aria-hidden="true"></div>
-          <p class="result-state__title">Reading the leaf…</p>
-          <p class="result-state__body">Comparing against the trained model, and the
-            reference library if needed.</p>
-        </div>
-
-        <div id="resultLowConfidence" class="result-state" hidden>
-          <p class="result-state__title">Not confident enough to say</p>
-          <p class="result-state__body" id="lowConfidenceMessage"></p>
-          <button class="btn btn--ghost" id="retakeBtn" type="button">Try another photo</button>
-        </div>
-
-        <div id="resultErrorState" class="result-state" hidden>
-          <p class="result-state__title">Something went wrong</p>
-          <p class="result-state__body" id="errorMessage"></p>
-          <button class="btn btn--ghost" id="retryBtn" type="button">Try again</button>
-        </div>
-
-        <article id="resultSuccess" class="result-card" hidden>
-          <header class="result-card__header">
-            <div>
-              <p class="result-card__crop" id="resultCrop"></p>
-              <h2 class="result-card__disease" id="resultDisease"></h2>
-              <p class="result-card__scientific" id="resultScientific"></p>
+                </div>
             </div>
-            <div class="confidence-badge">
-              <svg viewBox="0 0 64 64" class="confidence-badge__ring" aria-hidden="true">
-                <circle cx="32" cy="32" r="27" class="confidence-badge__track" />
-                <circle cx="32" cy="32" r="27" class="confidence-badge__fill" id="confidenceRing" />
-              </svg>
-              <span class="confidence-badge__value" id="confidenceValue">—</span>
+
+            <div class="header-actions">
+                <!-- Language Toggle -->
+                <button class="lang-toggle-btn" id="header-lang-btn" aria-label="Switch Language">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path
+                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                        </path>
+                    </svg>
+                    <span id="lang-indicator">EN</span>
+                </button>
+
+                <!-- Notification Bell -->
+                <button class="icon-btn" id="btn-notifications" aria-label="Notifications">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                    <span class="notification-badge"></span>
+                </button>
             </div>
-          </header>
+        </header>
 
-          <p class="method-note" id="methodNote" hidden></p>
+        <!-- Main Content Screens Viewport -->
+        <main class="app-content">
 
-          <div class="tabs" role="tablist">
-            <button class="tab is-active" role="tab" data-tab="symptoms">Symptoms</button>
-            <button class="tab" role="tab" data-tab="prevention">Prevention</button>
-            <button class="tab" role="tab" data-tab="treatment">Treatment</button>
-            <button class="tab" role="tab" data-tab="safety">Safety notes</button>
-          </div>
+            <!-- ========================================== -->
+            <!-- SCREEN 1: HOME / FARMER DASHBOARD          -->
+            <!-- ========================================== -->
+            <section class="screen active" id="screen-home">
 
-          <div class="tab-panels">
-            <ul class="tab-panel is-active" data-panel="symptoms" id="panelSymptoms"></ul>
-            <ul class="tab-panel" data-panel="prevention" id="panelPrevention"></ul>
-            <div class="tab-panel" data-panel="treatment" id="panelTreatment"></div>
-            <ul class="tab-panel" data-panel="safety" id="panelSafety"></ul>
-          </div>
-        </article>
+                <!-- Large Farm/Crop Hero Photograph (occupies ~40% screen area) -->
+                <div class="hero-photo-banner">
+                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80"
+                        alt="Sunrise over green farm field" class="hero-bg-img">
+                    <div class="hero-overlay-gradient"></div>
 
-      </div>
-    </section>
-  </main>
+                    <!-- Text Layered INSIDE the Hero Photograph -->
+                    <div class="hero-header-content">
+                        <div class="hero-mini-badge">
+                            <span class="badge-leaf">🌿</span>
+                            <span>AI Crop Health Assistant</span>
+                        </div>
+                        <h1 class="farmer-greeting" id="txt-greeting">Namaste, Farmer 👋</h1>
+                        <p class="greeting-sub" id="txt-subgreeting">Let's keep your crops healthy.</p>
+                    </div>
+                </div>
 
-  <footer class="site-footer">
-    <div class="wrap">
-      <p>Built for the DSN4096 capstone — VIT Bhopal. Diagnostic output is a decision aid,
-        not a substitute for an agricultural expert.</p>
-    </div>
-  </footer>
+                <!-- Floating Action Card Overlapping Bottom of Hero Photograph -->
+                <div class="hero-floating-card">
+                    <div class="floating-card-header">
+                        <span class="card-leaf-icon">🌿</span>
+                        <h2 class="hero-action-title" id="txt-hero-title">Analyze Your Crop</h2>
+                    </div>
 
-  <script src="js/app.js"></script>
-</body>
-</html>
+                    <p class="hero-action-desc" id="txt-hero-desc">
+                        Take a photo of a crop leaf and let CropCare AI help identify possible diseases.
+                    </p>
+
+                    <button class="btn btn-primary btn-large btn-block" id="btn-hero-analyze">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
+                            stroke-width="2.2">
+                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z">
+                            </path>
+                            <circle cx="12" cy="13" r="4"></circle>
+                        </svg>
+                        <span id="txt-cta-analyze">Scan Crop →</span>
+                    </button>
+                </div>
+
+                <!-- Quick Actions Grid -->
+                <div class="section-block">
+                    <h3 class="section-title" id="txt-quick-actions">Quick Actions</h3>
+                    <div class="quick-actions-grid">
+                        <button class="action-card" id="qa-scan">
+                            <div class="action-icon icon-forest">
+                                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path
+                                        d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z">
+                                    </path>
+                                    <circle cx="12" cy="13" r="4"></circle>
+                                </svg>
+                            </div>
+                            <span class="action-label" id="qa-txt-scan">Scan</span>
+                        </button>
+
+                        <button class="action-card" id="qa-history">
+                            <div class="action-icon icon-sage">
+                                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path>
+                                </svg>
+                            </div>
+                            <span class="action-label" id="qa-txt-history">History</span>
+                        </button>
+
+                        <button class="action-card" id="qa-support">
+                            <div class="action-icon icon-cream">
+                                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <span class="action-label" id="qa-txt-support">Support</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Recent Checks Section -->
+                <div class="section-block">
+                    <div class="section-header-flex">
+                        <h3 class="section-title" id="txt-recent-checks">Recent Checks</h3>
+                        <button class="link-btn" id="btn-view-all-history">View All →</button>
+                    </div>
+
+                    <!-- Cards Container -->
+                    <div class="recent-cards-list" id="recent-checks-container">
+                        <!-- Populated dynamically by script.js -->
+                    </div>
+                </div>
+
+                <div class="proto-footer-note">
+                    <span>📌• Demo Data</span>
+                </div>
+
+            </section>
+
+            <!-- ========================================== -->
+            <!-- SCREEN 2: CROP SCAN / UPLOAD              -->
+            <!-- ========================================== -->
+            <section class="screen" id="screen-scan">
+
+                <!-- Large Agricultural Photo Banner (~35% Height) -->
+                <div class="page-top-banner">
+                    <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=800&q=80"
+                        alt="Green leaf banner" class="banner-img">
+                    <div class="banner-overlay"></div>
+                    <button class="back-btn back-btn-overlay" id="btn-scan-back">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                    </button>
+                    <div class="banner-text">
+                        <h2 class="banner-title" id="txt-scan-title">Check Your Crop</h2>
+                        <p class="banner-sub" id="txt-scan-sub">Take a clear photo of the affected leaf.</p>
+                    </div>
+                </div>
+
+                <!-- Hidden Inputs -->
+                <input type="file" id="leaf-input-file" accept="image/jpeg,image/jpg,image/png,image/webp"
+                    class="visually-hidden">
+                <input type="file" id="leaf-input-camera" accept="image/jpeg,image/jpg,image/png,image/webp"
+                    capture="environment" class="visually-hidden">
+
+                <!-- Floating Upload Card Overlapping Banner -->
+                <div class="floating-upload-card">
+                    <div class="upload-dropzone" id="upload-dropzone">
+                        <div class="botanical-illustration">
+                            <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor"
+                                stroke-width="1.6">
+                                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.4 19 2c1 2 2 4.12 2 9a7 7 0 0 1-10 9z">
+                                </path>
+                                <path d="M11 20v-5.5a2.5 2.5 0 0 1 2.5-2.5H18"></path>
+                            </svg>
+                        </div>
+                        <h3 class="upload-heading" id="txt-upload-heading">Tap to upload or take a photo</h3>
+                        <p class="upload-subtext" id="txt-upload-subtext">JPG · PNG · WEBP · Max 10MB</p>
+                    </div>
+
+                    <div class="upload-actions">
+                        <button class="btn btn-primary btn-large btn-block" id="btn-trigger-camera">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
+                                stroke-width="2.2">
+                                <path
+                                    d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z">
+                                </path>
+                                <circle cx="12" cy="13" r="4"></circle>
+                            </svg>
+                            <span id="txt-btn-camera">Take Photo</span>
+                        </button>
+
+                        <button class="btn btn-secondary btn-large btn-block" id="btn-trigger-gallery">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                <polyline points="21 15 16 10 5 21"></polyline>
+                            </svg>
+                            <span id="txt-btn-gallery">Upload from Gallery</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Guidelines List directly on Cream Background -->
+                <div class="cream-tips-block">
+                    <h4 class="tips-heading" id="txt-tips-title">💡 For better results</h4>
+                    <ul class="tips-list">
+                        <li><span class="tip-check">✓</span> <span id="txt-tip-1">Use good lighting</span></li>
+                        <li><span class="tip-check">✓</span> <span id="txt-tip-2">Keep the leaf clearly visible</span>
+                        </li>
+                        <li><span class="tip-check">✓</span> <span id="txt-tip-3">Avoid blurry photos</span></li>
+                        <li><span class="tip-check">✓</span> <span id="txt-tip-4">Focus on the affected area</span></li>
+                    </ul>
+                </div>
+
+            </section>
+
+            <!-- ========================================== -->
+            <!-- SCREEN 3: IMAGE PREVIEW                    -->
+            <!-- ========================================== -->
+            <section class="screen" id="screen-preview">
+
+                <div class="screen-header">
+                    <button class="back-btn" id="btn-preview-back">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                    </button>
+                    <div class="screen-title-wrap">
+                        <h2 class="screen-title" id="txt-preview-title">Review Your Photo</h2>
+                        <p class="screen-subtitle" id="txt-preview-sub">Check if the leaf is clearly visible.</p>
+                    </div>
+                </div>
+
+                <!-- Error Toast Banner -->
+                <div class="alert-banner alert-error hidden" id="preview-error-banner">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                    <span id="txt-error-message">Invalid file selected. Please choose a valid image.</span>
+                </div>
+
+                <!-- Selected Leaf Image DOMINATES Upper Screen (~45% Height) -->
+                <div class="preview-hero-frame">
+                    <img id="img-preview" src="" alt="Uploaded crop leaf preview">
+                </div>
+
+                <div class="preview-status-pill">
+                    <span class="pill-icon">✓</span>
+                    <span>Image looks good!</span>
+                </div>
+
+                <div class="file-info-chip">
+                    <div class="file-chip-details">
+                        <span class="chip-filename" id="file-name-disp">leaf.jpg</span>
+                        <span class="chip-meta" id="file-size-disp">2.4 MB · JPG</span>
+                    </div>
+                </div>
+
+                <!-- Preview Actions -->
+                <div class="preview-actions">
+                    <button class="btn btn-primary btn-large btn-block" id="btn-confirm-analyze">
+                        <span id="txt-btn-analyze-leaf">🌿 Analyze Leaf →</span>
+                    </button>
+
+                    <button class="btn btn-secondary btn-large btn-block" id="btn-reselect-image">
+                        <span id="txt-btn-choose-another">Choose Another</span>
+                    </button>
+                </div>
+
+            </section>
+
+            <!-- ========================================== -->
+            <!-- SCREEN 4: AI ANALYSIS / LOADING            -->
+            <!-- ========================================== -->
+            <section class="screen screen-dark-bg" id="screen-loading">
+
+                <div class="analysis-fullscreen-wrapper">
+                    <!-- FULL-SCREEN Agricultural Background with Overlay -->
+                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80"
+                        alt="Backdrop" class="analysis-bg-img">
+                    <div class="analysis-bg-overlay"></div>
+
+                    <div class="analysis-content-box">
+                        <!-- Centered Circular Scanning Frame -->
+                        <div class="scanning-circle-container">
+                            <div class="pulse-ring"></div>
+                            <div class="scanner-img-wrap">
+                                <img id="img-scanning-thumb" src="" alt="Leaf scanning preview">
+                                <div class="laser-scanner-line"></div>
+                            </div>
+                        </div>
+
+                        <h2 class="loading-heading" id="txt-loading-title">Analyzing your crop...</h2>
+                        <p class="loading-subheading" id="txt-loading-sub">Our AI is examining the leaf for possible
+                            diseases.</p>
+
+                        <!-- Translucent Floating Progress Card -->
+                        <div class="translucent-progress-card">
+                            <div class="checklist-row done" id="chk-step-1">
+                                <span class="chk-bullet">✓</span>
+                                <span id="txt-chk-1">Image quality checked</span>
+                            </div>
+                            <div class="checklist-row done" id="chk-step-2">
+                                <span class="chk-bullet">✓</span>
+                                <span id="txt-chk-2">Crop image processed</span>
+                            </div>
+                            <div class="checklist-row active" id="chk-step-3">
+                                <span class="chk-bullet spinner">○</span>
+                                <span id="txt-chk-3">Detecting possible disease...</span>
+                            </div>
+                        </div>
+
+                        <span class="loading-demo-tag">Demonstration State</span>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- ========================================== -->
+            <!-- SCREEN 5: DISEASE RESULT                   -->
+            <!-- ========================================== -->
+            <section class="screen" id="screen-result">
+
+                <div class="screen-header flex-header">
+                    <div class="flex-left">
+                        <button class="back-btn"
